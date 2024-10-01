@@ -9,10 +9,10 @@ function initCalculator() {
     const calculatorArea = document.querySelector("#calculatorArea");
     calculatorArea.innerHTML = "";
 
-    clear();
-
     calculatorArea.appendChild(createCalculatorDisplay());
     calculatorArea.appendChild(createCalculatorKeypadArea());
+
+    clear();
 }
 
 function createCalculatorDisplay() {
@@ -192,7 +192,7 @@ function operate(numberOne, numberTwo, chosenOperation) {
             if (numberTwo != 0) {
                 calculatedResult = numberOne / numberTwo;
             } else {
-                calculatedResult = "One does not simply divide by zero";
+                calculatedResult = "No!";
             }
             break;
         case "%":
@@ -240,7 +240,7 @@ function updateDisplay() {
 }
 
 function invert() {
-    switch(calculatorPhase){
+    switch (calculatorPhase) {
         case "enterFirstNumber":
             firstNumber *= -1;
             break;
@@ -248,6 +248,8 @@ function invert() {
             secondNumber *= -1;
             break;
     }
+
+    updateDisplay();
 }
 
 function addDecimalPoint() {
@@ -255,18 +257,28 @@ function addDecimalPoint() {
 }
 
 function deleteLastElement() {
-    console.log("Last element deleted");
+    let str = "";
+    switch (calculatorPhase) {
+        case "enterFirstNumber":
+            str = firstNumber.toString();
+            str = str.substring(0, str.length - 1);
+            if (str.length == 0) {
+                firstNumber = 0;
+            } else {
+                firstNumber = parseInt(str);
+            }
+            break;
+        case "enterSecondNumber":
+            str = secondNumber.toString();
+            str = str.substring(0, str.length - 1);
+            if (str.length == 0) {
+                secondNumber = 0;
+            } else {
+                secondNumber = parseInt(str);
+            }
+            break;
+    }
+
+    updateDisplay();
 }
-
-function clear() {
-    const calculatorArea = document.querySelector("#calculatorArea");
-    calculatorArea.innerHTML = "";
-
-    calculatorPhase = "enterFirstNumber";
-    firstNumber = 0;
-    secondNumber = 0;
-    result = 0;
-    operation = "";
-}
-
 initCalculator();

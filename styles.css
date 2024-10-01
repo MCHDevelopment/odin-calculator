@@ -8,10 +8,9 @@
 
     border-style: solid;
     border-color: black;
-    box-shadow: inset;
     border-radius: 2em;
 
-    background-color: aquamarine;
+    background-color: rgb(83, 107, 120);
 }
 
 #calculatorDisplay {
@@ -45,8 +44,6 @@
     margin-right: 2.5vw;
     margin-top: 3vh;
 
-    border-style: solid;
-    border-color: blue;
     border-radius: 2em;
 }
 
@@ -63,8 +60,12 @@
     flex: 1;
 
     border-radius: 1em;
-    background-color: black;
-    color: white;
+    border-color: black;
+    border-style: inset;
+    border-width: 0.2em;
+
+    background-color: rgb(172, 203, 225);
+    color: black;
 
     font-size: 2em;
 

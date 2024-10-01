@@ -1,8 +1,15 @@
 
+let calculatorPhase = "enterFirstNumber";
+let firstNumber = 0;
+let secondNumber = 0;
+let result = 0;
+let operation = "";
+
 function initCalculator() {
     const calculatorArea = document.querySelector("#calculatorArea");
-
     calculatorArea.innerHTML = "";
+
+    clear();
 
     calculatorArea.appendChild(createCalculatorDisplay());
     calculatorArea.appendChild(createCalculatorKeypadArea());
@@ -125,19 +132,80 @@ function createCalculatorKey(keyCaption, keyCategory) {
 }
 
 function enterNumber(enteredNumber) {
-    console.log(enteredNumber + " entered");
+    switch (calculatorPhase) {
+        case "enterFirstNumber":
+            firstNumber *= 10;
+            firstNumber += enteredNumber;
+            break;
+        case "enterSecondNumber":
+            secondNumber *= 10;
+            secondNumber += enteredNumber;
+            break;
+        case "showResult":
+            //reset everything before starting the next calculation
+            clear();
+            calculatorPhase = "enterFirstNumber";
+            enterNumber(enteredNumber);
+            break;
+    }
+
+    updateDisplay();
 }
 
 function enterOperator(enteredOperator) {
-    console.log(enteredOperator + " operator entered");
+    switch (calculatorPhase) {
+        case "enterFirstNumber":
+            operation = enteredOperator;
+            calculatorPhase = "enterSecondNumber";
+            break;
+    }
+
+    updateDisplay();
 }
 
 function calculate() {
-    console.log("Calculate");
+    switch (calculatorPhase) {
+        case "enterSecondNumber":
+            calculatorPhase = "showResult";
+            break;
+    }
+
+    updateDisplay();
 }
 
 function clear() {
-    console.log("Clear");
+    const calculatorDisplay = document.querySelector("#calculatorDisplay");
+    calculatorDisplay.textContent = "0.00000";
+
+    calculatorPhase = "enterFirstNumber";
+    firstNumber = 0;
+    secondNumber = 0;
+    result = 0;
+    operation = "";
+}
+
+function updateDisplay() {
+    const calculatorDisplay = document.querySelector("#calculatorDisplay");
+
+    let displayString = "";
+    let calculationString = "";
+
+    switch (calculatorPhase) {
+        case "enterFirstNumber":
+            calculationString += firstNumber;
+            displayString = firstNumber;
+            break;
+        case "enterSecondNumber":
+            calculationString += firstNumber + " " + operation + " " + secondNumber;
+            displayString = secondNumber;
+            break;
+        case "showResult":
+            calculationString += firstNumber + " " + operation + " " + secondNumber + " = " + result;
+            displayString = result;
+            break;
+    }
+
+    calculatorDisplay.textContent = displayString;
 }
 
 function invert() {
@@ -148,8 +216,19 @@ function addDecimalPoint() {
     console.log("Decimal point added");
 }
 
-function deleteLastElement(){
+function deleteLastElement() {
     console.log("Last element deleted");
+}
+
+function clear() {
+    const calculatorArea = document.querySelector("#calculatorArea");
+    calculatorArea.innerHTML = "";
+
+    calculatorPhase = "enterFirstNumber";
+    firstNumber = 0;
+    secondNumber = 0;
+    result = 0;
+    operation = "";
 }
 
 initCalculator();

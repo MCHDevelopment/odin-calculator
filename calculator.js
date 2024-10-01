@@ -158,6 +158,15 @@ function enterOperator(enteredOperator) {
             operation = enteredOperator;
             calculatorPhase = "enterSecondNumber";
             break;
+        case "showResult":
+            //Store the result, because everything will be deleted
+            let tempNumber = operate(firstNumber, secondNumber, operation);
+            clear();
+            //use the result as the first number, like the assigment asked
+            firstNumber = tempNumber;
+            operation = enteredOperator;
+            calculatorPhase = "enterSecondNumber";
+            break;
     }
 
     updateDisplay();
@@ -235,6 +244,8 @@ function updateDisplay() {
             displayString = result;
             break;
     }
+
+    console.log(calculationString);
 
     calculatorDisplay.textContent = displayString;
 }

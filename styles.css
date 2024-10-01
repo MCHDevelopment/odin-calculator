@@ -1,0 +1,74 @@
+#calculatorArea {
+    width: 30vw;
+    height: 80vh;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    margin-left: 35vw;
+    margin-right: 35vw;
+
+    border-style: solid;
+    border-color: black;
+    box-shadow: inset;
+    border-radius: 2em;
+
+    background-color: aquamarine;
+}
+
+#calculatorDisplay {
+    padding: 1vh;
+
+    width: 25vw;
+    height: 7vh;
+
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+    margin-top: 5vh;
+
+    background-color: black;
+    color: greenyellow;
+
+    font-size: 6vh;
+    font-family: Consolas, monaco, monospace;
+    text-align: right;
+
+    border-radius: 0.5em;
+}
+
+#calculatorKeypadArea{
+    display: flex;
+    flex-direction: column;
+
+    width: 25vw;
+    height: 61vh;
+
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+    margin-top: 3vh;
+
+    border-style: solid;
+    border-color: blue;
+    border-radius: 2em;
+}
+
+.calculatorKeyRow{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+
+    padding-top: 4%;
+    padding-bottom: 4%;
+}
+
+.calculatorKey{
+    flex: 1;
+
+    border-radius: 1em;
+    background-color: black;
+    color: white;
+
+    font-size: 2em;
+
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    font-weight: bolder;
+}

@@ -64,12 +64,31 @@
     border-style: inset;
     border-width: 0.2em;
 
-    background-color: rgb(172, 203, 225);
-    color: black;
-
     font-size: 2em;
 
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
     font-weight: bolder;
+
+    color: black;
+}
+
+.calculatorNumberKey{
+    background-color: rgb(172, 203, 225);
+}
+
+.calculatorOperatorKey{
+    background-color: wheat;
+}
+
+.calculatorSpecialKey{
+    background-color: rgb(99, 112, 129);
+}
+
+.calculatorResultKey{
+    background-color: #A3F7B5;
+}
+
+.calculatorClearKey{
+    background-color: #590925;
 }

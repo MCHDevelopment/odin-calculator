@@ -166,12 +166,43 @@ function enterOperator(enteredOperator) {
 function calculate() {
     switch (calculatorPhase) {
         case "enterSecondNumber":
+            result = operate(firstNumber, secondNumber, operation);
             calculatorPhase = "showResult";
             break;
     }
 
     updateDisplay();
 }
+
+function operate(numberOne, numberTwo, chosenOperation) {
+    //Parameters are only here because the asignment asked for them, all of those values could be accessed without passing them
+    //so I added an return value to make this function independent of this script
+    let calculatedResult = 0;
+    switch (chosenOperation) {
+        case "+":
+            calculatedResult = numberOne + numberTwo;
+            break;
+        case "-":
+            calculatedResult = numberOne - numberTwo;
+            break;
+        case "x":
+            calculatedResult = numberOne * numberTwo;
+            break;
+        case ":":
+            if (numberTwo != 0) {
+                calculatedResult = numberOne / numberTwo;
+            } else {
+                calculatedResult = "One does not simply divide by zero";
+            }
+            break;
+        case "%":
+            calculatedResult = numberOne % numberTwo;
+            break;
+    }
+
+    return calculatedResult;
+}
+
 
 function clear() {
     const calculatorDisplay = document.querySelector("#calculatorDisplay");
@@ -209,7 +240,14 @@ function updateDisplay() {
 }
 
 function invert() {
-    console.log("Number inverted");
+    switch(calculatorPhase){
+        case "enterFirstNumber":
+            firstNumber *= -1;
+            break;
+        case "enterSecondNumber":
+            secondNumber *= -1;
+            break;
+    }
 }
 
 function addDecimalPoint() {
